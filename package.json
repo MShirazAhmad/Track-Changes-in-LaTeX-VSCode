@@ -1,7 +1,7 @@
 {
   "name": "latex-diff-from-timeline",
   "displayName": "LaTeX Compilable Diff (VS Code)",
-  "description": "VS Code extension: create LaTeX-compilable diffs (.tex) from Git Timeline/Explorer and compile to see highlighted changes.",
+  "description": "Create LaTeX-compilable diffs from Git Timeline, Source Control, or Explorer using latexdiff.",
   "version": "1.0.0",
   "publisher": "MShirazAhmad",
   "engines": {
@@ -11,7 +11,15 @@
     "type": "git",
     "url": "https://github.com/MShirazAhmad/latex-diff-from-git-timeline"
   },
+  "homepage": "https://github.com/MShirazAhmad/latex-diff-from-git-timeline#readme",
+  "bugs": {
+    "url": "https://github.com/MShirazAhmad/latex-diff-from-git-timeline/issues"
+  },
   "license": "MIT",
+  "galleryBanner": {
+    "color": "#1e1e1e",
+    "theme": "dark"
+  },
   "categories": [
     "Other",
     "Programming Languages",
@@ -43,6 +51,13 @@
       }
     ],
     "menus": {
+      "timeline/item/context": [
+        {
+          "command": "latexDiff.generateFromTimeline",
+          "group": "inline",
+          "when": "resourceExtname == '.tex'"
+        }
+      ],
       "scm/resourceState/context": [
         {
           "command": "latexDiff.generateFromTimeline",
