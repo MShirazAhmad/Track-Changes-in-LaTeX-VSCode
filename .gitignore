@@ -3,4 +3,5 @@ out/
 *.vsix
 README.md.bak
 .DS_Store
+docs/_build/
 
