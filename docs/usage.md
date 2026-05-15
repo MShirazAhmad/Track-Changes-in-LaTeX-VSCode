@@ -67,7 +67,7 @@ diff_<short-old-sha>_to_<short-new-sha>_<original-filename>.tex
 
 It is placed in the same directory as the original `.tex` file and is self-contained — it compiles like any standard LaTeX document without additional dependencies (beyond your TeX distribution).
 
-## Customising Diff Appearance
+## Customizing Diff Appearance
 
 To change colors (e.g., red → orange for deletions):
 
