@@ -1,38 +1,97 @@
+
 # Track Changes in LaTeX — VS Code Extension
 
-I just published a new VS Code extension: **[Track Changes in LaTeX — VS Code Extension](https://marketplace.visualstudio.com/items?itemName=MShirazAhmad.track-changes-in-latex-vscode)**. It lets you visualize how your LaTeX documents evolve by building diffs straight from the git commit history.
+The publication workflow for a research paper usually follows a familiar path.
 
-## What it does
+First, you submit your manuscript to a journal. After editorial screening and peer review, you receive referee comments. You then revise the manuscript, address the reviewers’ questions, and prepare the revised submission package.
 
-- Shows a commit-by-commit view of your LaTeX files so you can track changes visually.
-- Generates diffs using your repository history, making it easy to review edits before merging or sharing PDFs.
-- Runs directly inside VS Code—no separate scripts or manual commands needed once configured.
+In many cases, journals require two manuscript files at the revision stage:
 
-## Why it was built
+1. A clean revised PDF
+2. A revised PDF with tracked changes
 
-Keeping track of LaTeX edits across branches can be tedious. This extension keeps everything inside VS Code, so you can stay focused on writing while still having a clear audit trail of how a document changes over time.
+This second file is especially important because it allows editors and reviewers to see exactly what has changed since the original submission.
 
-## Install it
+For researchers using LaTeX, preparing a tracked-changes version can become inconvenient, especially when the project has grown large with multiple sections, figures, tables, bibliography files, and supplementary material. Online LaTeX compilers are useful, but they can become expensive as project size and collaboration needs increase.
 
-If you usually install extensions by searching in VS Code:
+Recently, I moved my LaTeX writing workflow to Visual Studio Code. With LaTeX compilation extensions and built-in Git support, VS Code provides a powerful local environment. The project files remain on my own machine, compilation happens locally, and Git makes it easy to track every important version of the manuscript.
 
-1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Search: `Track Changes in LaTeX — VS Code Extension`.
-3. Open the extension page and click **Install**.
+This experience led me to build a VS Code extension for generating tracked-changes PDFs from Git history.
 
-![VS Code Marketplace search result and extension details page showing the Install button.](https://github.com/user-attachments/assets/071fe8ba-0148-441f-94a7-0e1ae3f95d79)
+The workflow is simple:
 
-*Marketplace view: find the extension in search and install it directly from VS Code.*
+Before submitting the manuscript to a journal, commit the LaTeX project and label that commit clearly, for example:
 
-For VSIX installation, source builds, packaging, and local extension development, see {doc}`installation` and {doc}`development`.
+“Submitted for Publication”
 
-## How to use it
+After receiving reviewer comments, revise the manuscript as usual. Once the revision is complete, commit the revised version and label it, for example:
 
-- Open your LaTeX project in VS Code, and right-click a `.tex` file in **Source Control** (Changes/History) or **Explorer**.
-- Select **Track Changes in LaTeX**, choose the OLD version, then pick the NEW version (a commit or your working directory).
-- The extension writes a `diff_<old>_to_<new>_<file>.tex` file next to your source file and offers to open it.
-- Compile that diff file (`pdflatex diff_...tex`) to produce a PDF with tracked changes: additions in blue, deletions in red.
-- If you want the PDF to mirror your journal template, compile with the same main document preamble (for example, `pdflatex -jobname=tracked-change "\input{diff_...tex}"`) so fonts and spacing match.
+“Revision 1”
+
+The extension then allows you to select these two Git commits and automatically generate a LaTeX diff. This produces a PDF showing the tracked changes between the submitted version and the revised version.
+
+This makes the revision process much smoother. Instead of manually tracking edits or struggling to prepare a marked-up manuscript, you can use the Git history that already exists in your project.
+
+The goal is straightforward: help researchers prepare clean, revised files and tracked-changes files with less hassle, while keeping the full LaTeX workflow local, transparent, and reproducible.
+
+For anyone writing papers in LaTeX and handling journal revisions, this can make the submission and resubmission process more organized and less stressful.
+
+
+
+## Usage Guidelines
+
+1. Open a Git-tracked LaTeX project in VS Code.
+2. Right-click a `.tex` file in **Explorer** or **Source Control**.
+3. Choose **Track Changes in LaTeX**.
+4. Select the **OLD** version (usually the submission commit).
+5. Select the **NEW** version (usually your revised commit or working tree).
+6. Compile the generated `diff_<old>_to_<new>_<file>.tex` with LaTeX to produce the tracked-changes PDF.
+
+Recommended revision workflow:
+
+- Commit and label the original submitted version clearly.
+- Commit and label each revision round clearly.
+- Generate diffs between submission/revision checkpoints.
+- Submit both outputs to the journal:
+	- clean revised PDF
+	- tracked-changes PDF
+
+## Pictorial Procedure
+
+Follow these visual steps to generate tracked-changes for a `.tex` file.
+
+1) Right-click the `.tex` file and choose the command:
+
+![Step 1: Right-click on .tex and select Track Changes](./_static/pictorialprocedure/1. Right click on tex and click on option Track Changes in LaTeX.png)
+
+2) Select the older commit you want to compare against:
+
+![Step 2: Choose the old commit](./_static/pictorialprocedure/2. then click on old comit you want to compare to.png)
+
+3) Select the newer commit (or working directory) you want to compare to:
+
+![Step 3: Choose the newer commit](./_static/pictorialprocedure/3. then click on the latest commit you want to compare with.png)
+
+4) Compile the generated `.tex` file to produce the tracked-changes PDF:
+
+![Step 4: Compile the generated diff; output shows tracked changes](./_static/pictorialprocedure/4. then compile the new generated tex file, the generated pdf file will look like this showing tracked changes.png)
+
+Guidance:
+
+- Right-click the target `.tex` file from Explorer or Source Control (Timeline/Changes).
+- When choosing commits, prefer labeled submission/revision commits (for example, `Submitted for Publication` and `Revision 1`).
+- If you select the working directory as the newer side, ensure you saved the latest changes before generating the diff.
+- Compile the produced `diff_<old>_to_<new>_<file>.tex` with the same LaTeX engine and preamble you normally use (`pdflatex`, `xelatex`, or `lualatex`) so fonts and spacing match the journal template.
+
+This pictorial guide replaces older VSIX/build/install instructions and is the recommended quick-start flow for users.
+
+## Share or submit with tracked changes
+
+- **Send to collaborators or advisors:** Compile the generated diff file to PDF and share it so reviewers can see all edits in color. The PDF is fully standalone for quick comment rounds.
+- **Submit to publishers with change markup:** When responding to reviewer comments, generate a diff between the last published commit and your revised draft. The resulting PDF clearly marks insertions and deletions, so you can upload it as the tracked changes version many journals request.
+- **Pre-merge validation:** Before merging a branch, create a diff versus `main` to verify all manuscript edits are intentional. This also produces a ready-to-circulate tracked-changes PDF for sign-off.
+- **Advisory revisions with context:** Pair the diff PDF with your advisor's comment IDs by generating diffs on specific branches (for example, `advisor-notes` → `revision-v2`). Each colored change maps directly to a comment, speeding up approval.
+- **Camera-ready confidence:** Before final submission, regenerate the diff against the camera-ready branch to ensure no late-stage formatting tweaks slipped in unnoticed.
 
 ## In-editor selection flow
 

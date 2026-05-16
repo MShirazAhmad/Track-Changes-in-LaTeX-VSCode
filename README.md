@@ -35,15 +35,7 @@ The goal is straightforward: help researchers prepare clean, revised files and t
 
 For anyone writing papers in LaTeX and handling journal revisions, this can make the submission and resubmission process more organized and less stressful.
 
-## Install from Marketplace
 
-Install from: <https://marketplace.visualstudio.com/items?itemName=MShirazAhmad.track-changes-in-latex-vscode>
-
-Or in VS Code:
-
-1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Search for **Track Changes in LaTeX — VS Code Extension**.
-3. Click **Install**.
 
 ## Usage Guidelines
 
@@ -63,27 +55,34 @@ Recommended revision workflow:
   - clean revised PDF
   - tracked-changes PDF
 
-## Build VSIX v2 (this revision)
+## Pictorial Procedure
 
-From the repository root:
+Follow these visual steps to generate tracked-changes for a `.tex` file.
 
-```bash
-npm ci
-npm run compile
-npx @vscode/vsce package
-```
+1) Right-click the `.tex` file and choose the command:
 
-Expected output file for this revision:
+![Step 1: Right-click on .tex and select Track Changes](./docs/_static/pictorialprocedure/1. Right click on tex and click on option Track Changes in LaTeX.png)
 
-```text
-track-changes-in-latex-vscode-2.0.0.vsix
-```
+2) Select the older commit you want to compare against:
 
-Install locally for validation:
+![Step 2: Choose the old commit](./docs/_static/pictorialprocedure/2. then click on old comit you want to compare to.png)
 
-```bash
-code --install-extension ./track-changes-in-latex-vscode-2.0.0.vsix
-```
+3) Select the newer commit (or working directory) you want to compare to:
+
+![Step 3: Choose the newer commit](./docs/_static/pictorialprocedure/3. then click on the latest commit you want to compare with.png)
+
+4) Compile the generated `.tex` file to produce the tracked-changes PDF:
+
+![Step 4: Compile the generated diff; output shows tracked changes](./docs/_static/pictorialprocedure/4. then compile the new generated tex file, the generated pdf file will look like this showing tracked changes.png)
+
+Guidance:
+
+- Right-click the target `.tex` file from Explorer or Source Control (Timeline/Changes).
+- When choosing commits, prefer labeled submission/revision commits (for example, `Submitted for Publication` and `Revision 1`).
+- If you select the working directory as the newer side, ensure you saved the latest changes before generating the diff.
+- Compile the produced `diff_<old>_to_<new>_<file>.tex` with the same LaTeX engine and preamble you normally use (`pdflatex`, `xelatex`, or `lualatex`) so fonts and spacing match the journal template.
+
+This pictorial guide replaces older VSIX/build install instructions and is the recommended quick-start flow for users.
 
 ## In-editor selection flow (screenshots)
 
