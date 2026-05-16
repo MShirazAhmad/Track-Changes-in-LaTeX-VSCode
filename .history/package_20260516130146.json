@@ -1,0 +1,84 @@
+{
+  "name": "track-changes-in-latex-vscode",
+  "displayName": "Track Changes in LaTeX — VS Code Extension",
+  "description": "VS Code extension: create LaTeX-compilable diffs (.tex) from Git Timeline/Explorer and compile to see highlighted changes.",
+  "version": "2.0.1",
+  "publisher": "MShirazAhmad",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MShirazAhmad/Track-Changes-in-LaTeX-VSCode"
+  },
+  "license": "MIT",
+  "categories": [
+    "Other",
+    "Programming Languages",
+    "Formatters",
+    "SCM Providers"
+  ],
+  "keywords": [
+    "changes",
+    "compilable",
+    "diff",
+    "extension",
+    "git",
+    "latex",
+    "latexdiff",
+    "pdf",
+    "tex",
+    "timeline",
+    "vscode"
+  ],
+  "main": "./out/extension.js",
+  "icon": "images/icon.png",
+  "activationEvents": [
+    "onCommand:latexDiff.generateFromTimeline"
+  ],
+  "contributes": {
+    "commands": [
+      {
+        "command": "latexDiff.generateFromTimeline",
+        "title": "Track Changes in LaTeX"
+      }
+    ],
+    "menus": {
+      "scm/resourceState/context": [
+        {
+          "command": "latexDiff.generateFromTimeline",
+          "group": "inline",
+          "when": "resourceExtname == '.tex'"
+        }
+      ],
+      "scm/resourceFolder/context": [
+        {
+          "command": "latexDiff.generateFromTimeline",
+          "group": "1_modification",
+          "when": "resourceExtname == '.tex'"
+        }
+      ],
+      "explorer/context": [
+        {
+          "command": "latexDiff.generateFromTimeline",
+          "group": "2_workspace",
+          "when": "resourceExtname == '.tex'"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "package:vsix": "vsce package --allow-missing-repository --out track-changes-in-latex-vscode-2.0.1.vsix",
+    "watch": "tsc -watch -p ./",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.85.0",
+    "@vscode/vsce": "^3.7.1",
+    "typescript": "^5.0.0"
+  }
+}
