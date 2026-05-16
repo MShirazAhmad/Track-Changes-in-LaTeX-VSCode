@@ -14,7 +14,7 @@
 If you install extensions directly from VS Code search:
 
 1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Search for `latex-diff-from-git-timeline` (or `LaTeX Compilable Diff`).
+2. Search: `latex-diff-from-git-timeline` (or `LaTeX Compilable Diff`).
 3. Open the extension page and click **Install**.
 
 ![VS Code Marketplace search result and extension details page showing the Install button.](https://github.com/user-attachments/assets/071fe8ba-0148-441f-94a7-0e1ae3f95d79)
