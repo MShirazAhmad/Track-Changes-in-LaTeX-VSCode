@@ -1,6 +1,6 @@
-# LaTeX Diff from Git Timeline
+# Track Changes in LaTeX — VS Code Extension
 
-I just published a new VS Code extension: **[LaTeX Diff from Git Timeline](https://marketplace.visualstudio.com/items?itemName=ShirazAhmad.latex-diff-from-timeline)**. It lets you visualize how your LaTeX documents evolve by building diffs straight from the git commit history.
+I just published a new VS Code extension: **[Track Changes in LaTeX — VS Code Extension](https://marketplace.visualstudio.com/items?itemName=ShirazAhmad.latex-diff-from-timeline)**. It lets you visualize how your LaTeX documents evolve by building diffs straight from the git commit history.
 
 ## What it does
 
@@ -17,7 +17,7 @@ Keeping track of LaTeX edits across branches can be tedious. This extension keep
 If you usually install extensions by searching in VS Code:
 
 1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Search: `latex-diff-from-git-timeline`.
+2. Search: `Track Changes in LaTeX — VS Code Extension`.
 3. Open the extension page and click **Install**.
 
 ![VS Code Marketplace search result and extension details page showing the Install button.](https://github.com/user-attachments/assets/071fe8ba-0148-441f-94a7-0e1ae3f95d79)
@@ -58,7 +58,7 @@ For VSIX installation, source builds, packaging, and local extension development
 
 ## License
 
-MIT — see [LICENSE](https://github.com/MShirazAhmad/latex-diff-from-git-timeline/blob/main/LICENSE) for details.
+MIT — see [LICENSE](https://github.com/MShirazAhmad/Track-Changes-in-LaTeX-VSCode/blob/main/LICENSE) for details.
 
 ```{toctree}
 :maxdepth: 2

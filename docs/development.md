@@ -3,8 +3,8 @@
 ## Local Setup
 
 ```bash
-git clone https://github.com/MShirazAhmad/latex-diff-from-git-timeline.git
-cd latex-diff-from-git-timeline
+git clone https://github.com/MShirazAhmad/Track-Changes-in-LaTeX-VSCode.git
+cd Track-Changes-in-LaTeX-VSCode
 npm install
 npm run compile
 code .
@@ -15,7 +15,7 @@ code .
 ```bash
 npm run compile
 npx vsce package
-# Creates: latex-diff-from-timeline-1.0.0.vsix
+# Creates: latex-diff-from-timeline-1.0.1.vsix
 ```
 
 ## Test Locally in VS Code
@@ -39,7 +39,7 @@ Reinstall an updated local build:
 
 ```bash
 code --uninstall-extension mshirazahmad.latex-diff-from-timeline
-code --install-extension /path/to/latex-diff-from-timeline-1.0.0.vsix
+code --install-extension /path/to/latex-diff-from-timeline-1.0.1.vsix
 ```
 
 Package a new VSIX from the extension folder:
