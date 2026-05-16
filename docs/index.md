@@ -62,19 +62,19 @@ Follow these visual steps to generate tracked-changes for a `.tex` file.
 
 1) Right-click the `.tex` file and choose the command:
 
-![Step 1: Right-click on .tex and select Track Changes](./_static/pictorialprocedure/1. Right click on tex and click on option Track Changes in LaTeX.png)
+![Step 1: Right-click on .tex and select Track Changes](./_static/pictorialprocedure/1.png)
 
 2) Select the older commit you want to compare against:
 
-![Step 2: Choose the old commit](./_static/pictorialprocedure/2. then click on old comit you want to compare to.png)
+![Step 2: Choose the old commit](./_static/pictorialprocedure/2.png)
 
 3) Select the newer commit (or working directory) you want to compare to:
 
-![Step 3: Choose the newer commit](./_static/pictorialprocedure/3. then click on the latest commit you want to compare with.png)
+![Step 3: Choose the newer commit](./_static/pictorialprocedure/3.png)
 
 4) Compile the generated `.tex` file to produce the tracked-changes PDF:
 
-![Step 4: Compile the generated diff; output shows tracked changes](./_static/pictorialprocedure/4. then compile the new generated tex file, the generated pdf file will look like this showing tracked changes.png)
+![Step 4: Compile the generated diff; output shows tracked changes](./_static/pictorialprocedure/4.png)
 
 Guidance:
 
