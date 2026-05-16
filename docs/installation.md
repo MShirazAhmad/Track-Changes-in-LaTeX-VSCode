@@ -14,7 +14,7 @@
 If you install extensions directly from VS Code search:
 
 1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Search: `Track Changes in LaTeX — VS Code Extension` (or `latex-diff-from-timeline`).
+2. Search: `Track Changes in LaTeX — VS Code Extension` (or `track-changes-in-latex-vscode`).
 3. Open the extension page and click **Install**.
 
 ![VS Code Marketplace search result and extension details page showing the Install button.](https://github.com/user-attachments/assets/071fe8ba-0148-441f-94a7-0e1ae3f95d79)
@@ -31,7 +31,7 @@ If you install extensions directly from VS Code search:
 Or from a terminal:
 
 ```bash
-code --install-extension /path/to/latex-diff-from-timeline-1.0.1.vsix
+code --install-extension /path/to/track-changes-in-latex-vscode-1.0.2.vsix
 ```
 
 :::{note}
@@ -62,5 +62,5 @@ If you want to clone the repository, package the extension yourself, or work on 
 ## Uninstalling
 
 ```bash
-code --uninstall-extension mshirazahmad.latex-diff-from-timeline
+code --uninstall-extension mshirazahmad.track-changes-in-latex-vscode
 ```

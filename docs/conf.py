@@ -4,7 +4,7 @@
 project = "Track Changes in LaTeX — VS Code Extension"
 copyright = "2024, MShirazAhmad"
 author = "MShirazAhmad"
-release = "1.0.1"
+release = "1.0.2"
 
 extensions = [
     "myst_parser",
