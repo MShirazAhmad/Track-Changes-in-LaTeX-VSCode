@@ -31,7 +31,7 @@ If you install extensions directly from VS Code search:
 Or from a terminal:
 
 ```bash
-code --install-extension /path/to/track-changes-in-latex-vscode-1.0.2.vsix
+code --install-extension /path/to/track-changes-in-latex-vscode-2.0.0.vsix
 ```
 
 :::{note}

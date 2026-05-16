@@ -1,46 +1,105 @@
 # Track Changes in LaTeX — VS Code Extension
 
-I just published a new VS Code extension: **[Track Changes in LaTeX — VS Code Extension](https://marketplace.visualstudio.com/items?itemName=MShirazAhmad.track-changes-in-latex-vscode)**. It lets you visualize how your LaTeX documents evolve by building diffs straight from the git commit history.
+The publication workflow for a research paper usually follows a familiar path.
 
-## What it does
-- Shows a commit-by-commit view of your LaTeX files so you can track changes visually.
-- Generates diffs using your repository history, making it easy to review edits before merging or sharing PDFs.
-- Runs directly inside VS Code—no separate scripts or manual commands needed once configured.
+First, you submit your manuscript to a journal. After editorial screening and peer review, you receive referee comments. You then revise the manuscript, address the reviewers’ questions, and prepare the revised submission package.
 
-## Why I built it
-Keeping track of LaTeX edits across branches can be tedious. This extension keeps everything inside VS Code, so you can stay focused on writing while still having a clear audit trail of how a document changes over time.
+In many cases, journals require two manuscript files at the revision stage:
 
-## Try it out
-Clone the repository and install the extension locally to give it a spin:
+1. A clean revised PDF
+2. A revised PDF with tracked changes
+
+This second file is especially important because it allows editors and reviewers to see exactly what has changed since the original submission.
+
+For researchers using LaTeX, preparing a tracked-changes version can become inconvenient, especially when the project has grown large with multiple sections, figures, tables, bibliography files, and supplementary material. Online LaTeX compilers are useful, but they can become expensive as project size and collaboration needs increase.
+
+Recently, I moved my LaTeX writing workflow to Visual Studio Code. With LaTeX compilation extensions and built-in Git support, VS Code provides a powerful local environment. The project files remain on my own machine, compilation happens locally, and Git makes it easy to track every important version of the manuscript.
+
+This experience led me to build a VS Code extension for generating tracked-changes PDFs from Git history.
+
+The workflow is simple:
+
+Before submitting the manuscript to a journal, commit the LaTeX project and label that commit clearly, for example:
+
+“Submitted for Publication”
+
+After receiving reviewer comments, revise the manuscript as usual. Once the revision is complete, commit the revised version and label it, for example:
+
+“Revision 1”
+
+The extension then allows you to select these two Git commits and automatically generate a LaTeX diff. This produces a PDF showing the tracked changes between the submitted version and the revised version.
+
+This makes the revision process much smoother. Instead of manually tracking edits or struggling to prepare a marked-up manuscript, you can use the Git history that already exists in your project.
+
+The goal is straightforward: help researchers prepare clean, revised files and tracked-changes files with less hassle, while keeping the full LaTeX workflow local, transparent, and reproducible.
+
+For anyone writing papers in LaTeX and handling journal revisions, this can make the submission and resubmission process more organized and less stressful.
+
+## Install from Marketplace
+
+Install from: <https://marketplace.visualstudio.com/items?itemName=MShirazAhmad.track-changes-in-latex-vscode>
+
+Or in VS Code:
+
+1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
+2. Search for **Track Changes in LaTeX — VS Code Extension**.
+3. Click **Install**.
+
+## Usage Guidelines
+
+1. Open a Git-tracked LaTeX project in VS Code.
+2. Right-click a `.tex` file in **Explorer** or **Source Control**.
+3. Choose **Track Changes in LaTeX**.
+4. Select the **OLD** version (usually the submission commit).
+5. Select the **NEW** version (usually your revised commit or working tree).
+6. Compile the generated `diff_<old>_to_<new>_<file>.tex` with LaTeX to produce the tracked-changes PDF.
+
+Recommended revision workflow:
+
+- Commit and label the original submitted version clearly.
+- Commit and label each revision round clearly.
+- Generate diffs between submission/revision checkpoints.
+- Submit both outputs to the journal:
+  - clean revised PDF
+  - tracked-changes PDF
+
+## Build VSIX v2 (this revision)
+
+From the repository root:
 
 ```bash
-git clone https://github.com/MShirazAhmad/Track-Changes-in-LaTeX-VSCode.git
-cd Track-Changes-in-LaTeX-VSCode
-npm install
+npm ci
 npm run compile
 npx @vscode/vsce package
 ```
 
-Then load the extension into VS Code from the generated package (**Extensions** → `...` → **Install from VSIX**) and start diffing your LaTeX files against any commit in the timeline. Feedback and contributions are welcome.
+Expected output file for this revision:
 
-## Quick Setup from VS Code Marketplace
+```text
+track-changes-in-latex-vscode-2.0.0.vsix
+```
 
-If you usually install extensions by searching in VS Code:
+Install locally for validation:
 
-1. Open **Extensions** (`Ctrl+Shift+X` / `Cmd+Shift+X`).
-2. Search: `Track Changes in LaTeX — VS Code Extension`.
-3. Open the extension page and click **Install**.
+```bash
+code --install-extension ./track-changes-in-latex-vscode-2.0.0.vsix
+```
 
-![VS Code Marketplace search result and extension details page showing the Install button.](https://github.com/user-attachments/assets/071fe8ba-0148-441f-94a7-0e1ae3f95d79)
+## Publish VSIX v2 to marketplace.visualstudio.com
 
-*Marketplace view: find the extension in search and install it directly from VS Code.*
+1. Ensure you are logged in to the publisher account `MShirazAhmad`.
+2. Build the VSIX using the commands above.
+3. Publish with `vsce`:
 
-## How to use it
-- Open your LaTeX project in VS Code, and right-click a `.tex` file in **Source Control** (Changes/History) or **Explorer**.
-- Select **Track Changes in LaTeX**, choose the OLD version, then pick the NEW version (a commit or your working directory).
-- The extension writes a `diff_<old>_to_<new>_<file>.tex` file next to your source file and offers to open it.
-- Compile that diff file (`pdflatex diff_...tex`) to produce a PDF with tracked changes: additions in blue, deletions in red.
-- If you want the PDF to mirror your journal template, compile with the same main document preamble (e.g., `pdflatex -jobname=tracked-change "\input{diff_...tex}"`) so fonts and spacing match.
+```bash
+npx @vscode/vsce publish
+```
+
+If publishing from an already-built VSIX is preferred:
+
+```bash
+npx @vscode/vsce publish --packagePath ./track-changes-in-latex-vscode-2.0.0.vsix
+```
 
 ## In-editor selection flow (screenshots)
 
@@ -56,15 +115,6 @@ If you usually install extensions by searching in VS Code:
 ![Compiled PDF output demonstrating the final tracked-changes document generated by the extension.](./docs/_static/images/latexdiff-full-example-4.png)
 *This is the compiled PDF produced from the generated `latexdiff` file, showing additions in blue and deletions in red just as journals require.*
 
-## Share or submit with tracked changes
-- **Send to collaborators or advisors:** Compile the generated diff file to PDF and share it so reviewers can see all edits in color. The PDF is fully standalone for quick comment rounds.
-- **Submit to publishers with change markup:** When responding to reviewer comments, generate a diff between the last published commit and your revised draft. The resulting PDF clearly marks insertions/deletions, so you can upload it as the tracked changes version many journals request.
-- **Pre-merge validation:** Before merging a branch, create a diff versus `main` to verify all manuscript edits are intentional. This also produces a ready-to-circulate tracked-changes PDF for sign-off.
-- **Advisory revisions with context:** Pair the diff PDF with your advisor’s comment IDs by generating diffs on specific branches (e.g., `advisor-notes` → `revision-v2`). Each colored change maps directly to a comment, speeding up approval.
-- **Camera-ready confidence:** Before final submission, regenerate the diff against the camera-ready branch to ensure no late-stage formatting tweaks slipped in unnoticed.
-
-## Read the Docs
-For docs rendering on Read the Docs, the screenshots are referenced from the docs tree using `_static/images/...` paths in `/docs/usage.md`.
-
 ## License
+
 MIT — see [LICENSE](LICENSE) for details.
