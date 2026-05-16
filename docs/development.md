@@ -15,7 +15,7 @@ code .
 ```bash
 npm run compile
 npx vsce package
-# Creates: track-changes-in-latex-vscode-1.0.2.vsix
+# Creates: track-changes-in-latex-vscode-2.0.0.vsix
 ```
 
 ## Test Locally in VS Code
@@ -39,7 +39,7 @@ Reinstall an updated local build:
 
 ```bash
 code --uninstall-extension mshirazahmad.track-changes-in-latex-vscode
-code --install-extension /path/to/track-changes-in-latex-vscode-1.0.2.vsix
+code --install-extension /path/to/track-changes-in-latex-vscode-2.0.0.vsix
 ```
 
 Package a new VSIX from the extension folder:
